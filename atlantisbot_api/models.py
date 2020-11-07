@@ -72,7 +72,7 @@ class RaidsState(DiscordModel):
     @classmethod
     def object(cls) -> RaidsState:
         # Get the First Item
-        item = cls._default_manager.all().first()
+        item = cls._default_manager.first()
 
         # Create Item if one does not exist
         if not item:
@@ -97,7 +97,7 @@ class AdvLogState(DiscordModel):
     @classmethod
     def object(cls) -> AdvLogState:
         # Get the First Item
-        item = cls._default_manager.all().first()
+        item = cls._default_manager.first()
 
         # Create Item if one does not exist
         if not item:
@@ -129,7 +129,7 @@ class AmigoSecretoState(DiscordModel):
     @classmethod
     def object(cls) -> AmigoSecretoState:
         # Get the First Item
-        item = cls._default_manager.all().first()
+        item = cls._default_manager.first()
 
         # Create Item if one does not exist
         if not item:
@@ -238,9 +238,9 @@ class VoiceOfSeren(DiscordModel):
     updated = models.DateTimeField(default=timezone.now)
 
     @classmethod
-    def object(cls) -> RaidsState:
+    def object(cls) -> VoiceOfSeren:
         # Get the First Item
-        return cls._default_manager.all().first()
+        return cls._default_manager.first()
 
 
 class Player(DiscordModel):
