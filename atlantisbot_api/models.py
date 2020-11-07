@@ -101,7 +101,7 @@ class AdvLogState(DiscordModel):
 
         # Create Item if one does not exist
         if not item:
-            item = cls._default_manager.create(activated=False)
+            item = cls._default_manager.create(active=False)
             item.save()
 
         return item
@@ -240,14 +240,7 @@ class VoiceOfSeren(DiscordModel):
     @classmethod
     def object(cls) -> RaidsState:
         # Get the First Item
-        item = cls._default_manager.all().first()
-
-        # Create Item if one does not exist
-        if not item:
-            item = cls._default_manager.create(notifications=False)
-            item.save()
-
-        return item
+        return cls._default_manager.all().first()
 
 
 class Player(DiscordModel):
