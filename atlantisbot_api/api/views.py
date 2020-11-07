@@ -11,23 +11,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-class StatusViewSet(viewsets.ModelViewSet):
-    """
-    Base ViewSet for 'Status-based' ViewSets, that will have a '/status' endpoint action that will retrieve the
-    first object from that Model in the DB
-    """
-
-    @action(detail=False, methods=['get'], permission_classes=[discord_permissions.AdminOrReadOnly])
-    def status(self, request):
-        """
-        Returns the First Object from Model in DB, that will be the current Status of that Model
-        """
-        first = self.get_serializer_class().object()
-        serializer = self.get_serializer(first)
-        return Response(serializer.data)
-
-
-class RaidsStateViewSet(StatusViewSet):
+class RaidsStateViewSet(viewsets.ModelViewSet):
     """
     Get the Status of Raids stuff in Discord
     """
@@ -43,6 +27,15 @@ class RaidsStateViewSet(StatusViewSet):
         raids_status = models.RaidsState.object()
         raids_status.toggle()
         return Response('Status do Amigo Secreto atualizado com sucesso')
+
+    @action(detail=False, methods=['get'], permission_classes=[discord_permissions.AdminOrReadOnly])
+    def status(self, request):
+        """
+        Returns the First Object from Model in DB, that will be the current Status of that Model
+        """
+        raids_status = models.RaidsState.object()
+        serializer = serializers.RaidsStateSerializer(raids_status)
+        return Response(serializer.data)
 
 
 class DisabledCommandViewSet(viewsets.ModelViewSet):
@@ -78,12 +71,6 @@ class AmigoSecretoStatusViewSet(viewsets.ViewSet):
         Get Secret Santa Status
         """
         secret_santa_status = models.AmigoSecretoState.object()
-
-        if not secret_santa_status:
-            # Create Status if it does not exist already
-            secret_santa_status = models.AmigoSecretoState(activated=False)
-            secret_santa_status.save()
-
         serializer = serializers.AmigoSecretoStateSerializer(secret_santa_status)
         return Response(serializer.data)
 
