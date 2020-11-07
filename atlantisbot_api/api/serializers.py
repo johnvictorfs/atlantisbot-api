@@ -40,7 +40,7 @@ class DisabledCommandSerializer(serializers.HyperlinkedModelSerializer):
 class DoacaoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Doacao
-        fields = ('id', 'doador_name', 'date', 'ammount')
+        fields = ('id', 'doador_name', 'date', 'amount')
 
 
 class DoacaoGoalSerializer(serializers.HyperlinkedModelSerializer):
