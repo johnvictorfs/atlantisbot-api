@@ -22,8 +22,8 @@ class StatusViewSet(viewsets.ModelViewSet):
         """
         Returns the First Object from Model in DB, that will be the current Status of that Model
         """
-        status = self.queryset.first()
-        serializer = self.get_serializer(status)
+        first = self.get_serializer_class().object()
+        serializer = self.get_serializer(first)
         return Response(serializer.data)
 
 
@@ -40,7 +40,7 @@ class RaidsStateViewSet(StatusViewSet):
         """
         Toggle Status of Discord's Raids Notifications
         """
-        raids_status = models.RaidsState.objects.first()
+        raids_status = models.RaidsState.object()
         raids_status.toggle()
         return Response('Status do Amigo Secreto atualizado com sucesso')
 
@@ -116,7 +116,7 @@ class AmigoSecretoStatusViewSet(viewsets.ViewSet):
         """
         Toggle Status of Discord's Secret Santa
         """
-        secret_santa_status = models.AmigoSecretoState.objects.first()
+        secret_santa_status = models.AmigoSecretoState.object()
         secret_santa_status.toggle()
         return Response('Status do Amigo Secreto atualizado com sucesso')
 
