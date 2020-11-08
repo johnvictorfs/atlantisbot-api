@@ -13,7 +13,7 @@ from typing import Union
 
 
 class DiscordIdField(models.TextField):
-    description = "A representation of a Discord ID"
+    description = 'A representation of a Discord ID'
 
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 100
