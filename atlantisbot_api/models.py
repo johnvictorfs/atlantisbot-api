@@ -211,8 +211,8 @@ class DiscordIngameName(DiscordModel):
 
 class Team(DiscordModel):
     created_date = models.DateTimeField(default=timezone.now)
-    team_id = models.CharField(unique=True, max_length=10)
-    title = models.CharField(max_length=30)
+    team_id = models.CharField(unique=True, max_length=100)
+    title = models.CharField(max_length=300)
     size = models.IntegerField()
     role = DiscordIdField(null=True, blank=True)
     role_secondary = DiscordIdField(null=True, blank=True)
@@ -232,8 +232,8 @@ class Team(DiscordModel):
 
 
 class VoiceOfSeren(DiscordModel):
-    current_voice_one = models.CharField(max_length=10)
-    current_voice_two = models.CharField(max_length=10)
+    current_voice_one = models.CharField(max_length=50)
+    current_voice_two = models.CharField(max_length=50)
     message_id = DiscordIdField()
     updated = models.DateTimeField(default=timezone.now)
 
