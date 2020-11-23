@@ -154,6 +154,7 @@ class DiscordUser(DiscordModel):
     ingame_name = models.TextField(unique=True, null=False)
     discord_id = DiscordIdField()
     discord_name = models.TextField()
+    clan = models.TextField(default='Atlantis')
 
     discord = DiscordEntityManager()
 
