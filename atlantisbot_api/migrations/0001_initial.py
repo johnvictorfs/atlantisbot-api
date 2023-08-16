@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             name='DisabledCommand',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField(unique=False, verbose_name='Nome', max_length=50)),
+                ('name', models.CharField(unique=False, verbose_name='Nome', max_length=50)),
             ],
             options={
                 'db_table': 'disabled_command',
@@ -44,9 +44,9 @@ class Migration(migrations.Migration):
                 ('updated', models.DateTimeField(default=django.utils.timezone.now)),
                 ('warning_date', models.DateTimeField(blank=True, null=True)),
                 ('disabled', models.BooleanField(default=False)),
-                ('ingame_name', models.TextField(unique=False, max_length=20)),
-                ('discord_id', models.TextField()),
-                ('discord_name', models.TextField()),
+                ('ingame_name', models.CharField(unique=False, max_length=20)),
+                ('discord_id', models.CharField(max_length=100)),
+                ('discord_name', models.CharField(max_length=120)),
             ],
             options={
                 'db_table': 'user',
@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
             name='Doacao',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('doador_name', models.TextField(max_length=12)),
+                ('doador_name', models.CharField(max_length=12)),
                 ('date', models.DateTimeField(default=django.utils.timezone.now)),
                 ('ammount', models.BigIntegerField()),
             ],
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('goal', models.BigIntegerField()),
                 ('active', models.BooleanField(default=False)),
-                ('name', models.TextField()),
+                ('name', models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
@@ -75,7 +75,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('notifications', models.BooleanField(default=False, verbose_name='Notificações')),
-                ('time_to_next_message', models.TextField(null=True, verbose_name='Próxima Mensagem')),
+                ('time_to_next_message', models.CharField(null=True, verbose_name='Próxima Mensagem', max_length=100)),
             ],
             options={
                 'db_table': 'raidsstate',
@@ -85,7 +85,7 @@ class Migration(migrations.Migration):
             name='DiscordIngameName',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField(verbose_name='Nome RuneScape')),
+                ('name', models.CharField(verbose_name='Nome RuneScape', max_length=20)),
                 ('created_date', models.DateTimeField(default=django.utils.timezone.now)),
                 ('user', models.ForeignKey(db_column='user', on_delete=django.db.models.deletion.CASCADE, related_name='ingame_names', to='atlantisbot_api.DiscordUser', verbose_name='Usuário')),
             ],

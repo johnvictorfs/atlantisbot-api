@@ -101,7 +101,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='raidsstate',
             name='time_to_next_message',
-            field=models.TextField(blank=True, null=True, verbose_name='Próxima Mensagem'),
+            field=models.CharField(max_length=100, blank=True, null=True, verbose_name='Próxima Mensagem'),
         ),
         migrations.AlterModelTable(
             name='amigosecretostate',

@@ -12,7 +12,7 @@ from django.core.exceptions import ValidationError
 from typing import Union
 
 
-class DiscordIdField(models.TextField):
+class DiscordIdField(models.CharField):
     description = 'A representation of a Discord ID'
 
     def __init__(self, *args, **kwargs):

@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='discorduser',
             name='clan',
-            field=models.TextField(default='Atlantis'),
+            field=models.CharField(default='Atlantis', max_length=50),
         ),
     ]
