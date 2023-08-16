@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atlantisbot-api"
-version = "1.0.9"
+version = "1.0.10"
 description = "Django App to interface with the AtlantisBot API"
 authors = ["John Victor <johnvfs@protonmail.com>"]
 license = "MIT"
