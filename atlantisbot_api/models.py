@@ -112,7 +112,7 @@ class PlayerActivities(DiscordModel):
 
 
 class DisabledCommand(DiscordModel):
-    name = models.TextField(verbose_name='Nome', unique=False, max_length=50)
+    name = models.CharField(verbose_name='Nome', unique=False, max_length=50)
 
 
 class AmigoSecretoState(DiscordModel):
@@ -151,10 +151,10 @@ class DiscordUser(DiscordModel):
     updated = models.DateTimeField(default=timezone.now)
     warning_date = models.DateTimeField(null=True, blank=True)
     disabled = models.BooleanField(default=False)
-    ingame_name = models.TextField(unique=False, null=False, max_length=20)
+    ingame_name = models.CharField(unique=False, null=False, max_length=20)
     discord_id = DiscordIdField()
-    discord_name = models.TextField()
-    clan = models.TextField(default='Atlantis')
+    discord_name = models.CharField(max_length=120)
+    clan = models.CharField(default='Atlantis', max_length=50)
 
     discord = DiscordEntityManager()
 
@@ -199,7 +199,7 @@ class AmigoSecretoPerson(DiscordModel):
 
 
 class DiscordIngameName(DiscordModel):
-    name = models.TextField(verbose_name='Nome RuneScape')
+    name = models.CharField(verbose_name='Nome RuneScape', max_length=20)
     created_date = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(
         to=DiscordUser,
@@ -278,7 +278,7 @@ class BotMessage(DiscordModel):
 
 
 class Doacao(models.Model):
-    doador_name = models.TextField(max_length=12)
+    doador_name = models.CharField(max_length=12)
     date = models.DateTimeField(default=timezone.now)
     amount = models.BigIntegerField()
 
@@ -286,4 +286,4 @@ class Doacao(models.Model):
 class DoacaoGoal(models.Model):
     goal = models.BigIntegerField()
     active = models.BooleanField(default=False)
-    name = models.TextField()
+    name = models.CharField(max_length=50)
