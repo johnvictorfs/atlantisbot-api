@@ -112,7 +112,7 @@ class PlayerActivities(DiscordModel):
 
 
 class DisabledCommand(DiscordModel):
-    name = models.TextField(verbose_name='Nome', unique=True)
+    name = models.TextField(verbose_name='Nome', unique=True, max_length=50)
 
 
 class AmigoSecretoState(DiscordModel):
@@ -151,7 +151,7 @@ class DiscordUser(DiscordModel):
     updated = models.DateTimeField(default=timezone.now)
     warning_date = models.DateTimeField(null=True, blank=True)
     disabled = models.BooleanField(default=False)
-    ingame_name = models.TextField(unique=True, null=False)
+    ingame_name = models.TextField(unique=True, null=False, max_length=20)
     discord_id = DiscordIdField()
     discord_name = models.TextField()
     clan = models.TextField(default='Atlantis')

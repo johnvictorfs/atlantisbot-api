@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             name='DisabledCommand',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField(unique=True, verbose_name='Nome')),
+                ('name', models.TextField(unique=True, verbose_name='Nome', max_length=50)),
             ],
             options={
                 'db_table': 'disabled_command',
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('updated', models.DateTimeField(default=django.utils.timezone.now)),
                 ('warning_date', models.DateTimeField(blank=True, null=True)),
                 ('disabled', models.BooleanField(default=False)),
-                ('ingame_name', models.TextField(unique=True)),
+                ('ingame_name', models.TextField(unique=True, max_length=20)),
                 ('discord_id', models.TextField()),
                 ('discord_name', models.TextField()),
             ],
